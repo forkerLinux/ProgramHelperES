@@ -11,7 +11,7 @@ import json
 
 class CsdnModel(Model):
 
-    __tablename__ = 'csdn3'
+    __tablename__ = 'csdn6'
 
     taskid = Column(String(64), primary_key=True)
     url = Column(String(1024))
@@ -30,9 +30,13 @@ class BlogModel(Model):
     id = Column(Integer, primary_key=True)
     url = Column(String(255), unique=True)
     title = Column(String(255))
-    tags = Column(String(255))
     category = Column(String(255))
     subcategory = Column(String(255))
-    content = Column(LONGTEXT)
     fetch_time = Column(DateTime)
     create_time = Column(DateTime)
+
+    def to_json(self):
+        ret_dict = {}
+        for k in self.__table__.columns:
+            ret_dict[k.name] = getattr(self, k.name)
+        return ret_dict
