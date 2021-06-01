@@ -5,4 +5,4 @@ mongo-connector==2.4.1
 pymongo==3.3.0
 pysolr==3.5.0
 requests==2.11.1
-urllib3==1.17
+urllib3==1.26.5
